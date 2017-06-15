@@ -1,5 +1,5 @@
 var api = {
-    url: 'http://examen-laboratoria-sprint-5.herokuapp.com/topics'
+    url: 'http://examen-laboratoria-sprint-5.herokuapp.com/topics/'
 };
 var $topicList = $("#topic-list");
 var topicsArray = [];
@@ -21,8 +21,11 @@ var filterTopics = function (e) {
         return brandNew;
     })
 
-    console.log(topicsFilterNew)
-    renderTopic(topicsFilterNew);
+    $topicList.html("");
+    
+    topicsFilterNew.forEach(function(topi){
+        renderTopic(topi)
+    })
 
 };
 
@@ -48,7 +51,10 @@ var renderTopic = function (topic) {
     var $spanAuthor = $("<span />");
     var $spanCount = $("<span />");
     var $link = $("<a />");
+    var $close = $('<span class="delete"> BORRAR </span>')
 
+        
+    $tr.attr("id", id)
     $tdTopic.text(content);
     $tdResponses.text("Respuestas: ")
     $spanAuthor.text(" -por: " + author_name);
@@ -56,7 +62,8 @@ var renderTopic = function (topic) {
 
     $tr.attr("id", id);
     $link.attr("href", "verTopic.html?topic_id=" + id);
-
+    
+    $spanCount.append($close)
     $tdTopic.append($spanAuthor);
     $tdResponses.append($spanCount);
 
@@ -89,12 +96,29 @@ var addTopic = function (event) {
 
 };
 
+var deleteTopic= function(){
+    var $nodopadre = $(this).parents("tr");
+    var id= $(this).parents("tr").attr("id")
+    console.log("est",id)
+    
+    $.ajax({
+        url: api.url+id,
+        type: 'DELETE',
+        success: console.log("eliminado"),
+        error: function(error){
+            console.log("error",error)
+        }
+    });
+    
+   $nodopadre.remove();
+}
 
 var cargarPagina = function () {
     cargarTopics();
     $("#topics-form").submit(addTopic);
     $("#createBtn").click(showForm);
     $("#inputFilter").keyup(filterTopics);
+    $(document).on("click",".delete", deleteTopic)
 };
 
 $(document).ready(cargarPagina);
