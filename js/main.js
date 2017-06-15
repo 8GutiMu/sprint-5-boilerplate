@@ -95,7 +95,6 @@ var cargarPagina = function () {
     $("#topics-form").submit(addTopic);
     $("#createBtn").click(showForm);
     $("#inputFilter").keyup(filterTopics);
-    $(document).on("click", ".topic-list-item", showThisTopic);
 };
 
 $(document).ready(cargarPagina);
