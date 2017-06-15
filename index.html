@@ -2,24 +2,54 @@
 
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title>Foro GutiMu </title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
+    <nav class="container">
+        <div class="row">
+            <h1>Aqui van todos los temas</h1>
+            <button id="createBtn" class="btn">Crear nuevo tema</button>
+            <input id="inputFilter" placeholder="BuscarTopic" class="col-md-2">
+        </div>
+    </nav>
 
-    <h1>Aqui van todos los temas</h1>
-    <table class="table table-responsive">
-        <tbody id="topic-list" >
+    <section id="topic-form" class="container hide-form">
+        <div class="col-md-3">
+            <form id="topics-form" action="">
+                <div class="row">
+                    <label for="">Autor</label>
+                    <input id="author_name" type="text">
+                </div>
+                <div class="row">
+                    <label for="">Topic</label>
+                    <input id="topic_content" type="text">
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-block" type="submit">Agregar</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section id="topics" class="container">
+        <table class="table table-responsive">
+            <tbody id="topic-list">
+                <!--Muestra para hacer un topic
             <tr>
-                <td>Topic</td>
-                <td>Respuestas: <span>0</span></td>
+                <tdTopic>Topic <spanAuthor>-por: Bren</span></td>
+                <tdResponses>Respuestas: <spanCount>0</span></td>
             </tr>
-        </tbody>
-    </table>
-    
+-->
+            </tbody>
+        </table>
+    </section>
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js"></script>
@@ -27,4 +57,5 @@
     <script src="js/main.js"></script>
 
 </body>
+
 </html>
