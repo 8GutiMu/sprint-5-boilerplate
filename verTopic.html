@@ -1,25 +1,46 @@
-<!-- Mostrar en este HTML las respuestas de cada topic -->
-
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta charset="utf-8">
     <title></title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
 
-    <h1>Aqui va el contenido de tema individual</h1>
-    <!-- Borar cuando se entienda como pasar info con topic id-->
-    <h1>Ingresa el topic id a este html usando la url.</h1>
-    <a href='verTopic.html?topic_id=2'>Algo asi</a><br/>
-    <a href='verTopic.html?topic_id=1'>O asi</a>
-    <!-- Borar cuando se entienda como pasar info con topic id-->
-    
-     <!-- jQuery -->
+<body>
+
+    <a href="index.html">Regresar a Principal</a>
+
+    <section id="myTopic">
+
+    </section>
+
+    <section id="myResponses">
+
+    </section>
+
+    <button id="addResponse" class="btn">Agregar Otra Respuesta</button>
+
+    <form id="response-form" action="" class="container hide-form">
+        <div class="row">
+            <label for="">Por:</label>
+            <input type="text" id="authorResponse" placeholder="Tu nombre">
+        </div>
+        <div class="row">
+            <label for="">Respuesta:</label>
+            <input type="text" id="contentResponse" placeholder="Tu repsuesta">
+        </div>
+        <button id="addAResponse" class="btn" type="submit">Agregar</button>
+    </form>
+
+
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
 
     <script src="js/functions.js"></script>
     <script src="js/verTopic.js"></script>
-  </body>
+</body>
+
 </html>

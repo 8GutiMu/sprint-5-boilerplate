@@ -1,0 +1,17 @@
+section {
+    padding: 10px;
+}
+
+.hide-form{
+    display: none;
+}
+
+.show-form{
+    display: block;
+}
+
+.topic-list-item{
+    color: black;
+    
+}
+
