@@ -14,19 +14,16 @@ var filterTopics = function (e) {
     e.preventDefault();
     var searchTopic = $("#inputFilter").val().toLowerCase();
 
-
-
     var topicsFilterNew = topicsArray.filter(function (topic) {
         var brandNew = topic.content.toLowerCase().indexOf(searchTopic) >= 0;
         return brandNew;
     })
 
     $topicList.html("");
-    
-    topicsFilterNew.forEach(function(topi){
+
+    topicsFilterNew.forEach(function (topi) {
         renderTopic(topi)
     })
-
 };
 
 var showForm = function () {
@@ -53,7 +50,7 @@ var renderTopic = function (topic) {
     var $link = $("<a />");
     var $close = $('<span class="delete"> BORRAR </span>')
 
-        
+
     $tr.attr("id", id)
     $tdTopic.text(content);
     $tdResponses.text("Respuestas: ")
@@ -62,7 +59,7 @@ var renderTopic = function (topic) {
 
     $tr.attr("id", id);
     $link.attr("href", "verTopic.html?topic_id=" + id);
-    
+
     $spanCount.append($close)
     $tdTopic.append($spanAuthor);
     $tdResponses.append($spanCount);
@@ -96,21 +93,21 @@ var addTopic = function (event) {
 
 };
 
-var deleteTopic= function(){
+var deleteTopic = function () {
     var $nodopadre = $(this).parents("tr");
-    var id= $nodopadre.attr("id")
-    console.log("est",id,$nodopadre)
-    
+    var id = $nodopadre.attr("id")
+    console.log("est", id, $nodopadre)
+
     $.ajax({
-        url: api.url+id,
+        url: api.url + id,
         type: 'DELETE',
         success: console.log("eliminado"),
-        error: function(error){
-            console.log("NO ME DEJAN BORRAR >:(",error)
+        error: function (error) {
+            console.log("NO ME DEJAN BORRAR >:(", error)
         }
     });
-    
-   $nodopadre.remove();
+
+    $nodopadre.remove();
 }
 
 var cargarPagina = function () {
@@ -118,7 +115,7 @@ var cargarPagina = function () {
     $("#topics-form").submit(addTopic);
     $("#createBtn").click(showForm);
     $("#inputFilter").keyup(filterTopics);
-    $(document).on("click",".delete", deleteTopic)
+    $(document).on("click", ".delete", deleteTopic)
 };
 
 $(document).ready(cargarPagina);
