@@ -48,23 +48,23 @@ var renderTopic = function (topic) {
     var $spanAuthor = $("<span />");
     var $spanCount = $("<span />");
     var $link = $("<a />");
-    
+
     $tdTopic.text(content);
     $tdResponses.text("Respuestas: ")
     $spanAuthor.text(" -por: " + author_name);
     $spanCount.text(responseConunt);
 
     $tr.attr("id", id);
-    $link.attr("href", "verTopic.html?topic_id="+id);
+    $link.attr("href", "verTopic.html?topic_id=" + id);
 
     $tdTopic.append($spanAuthor);
     $tdResponses.append($spanCount);
-    
+
 
     $tr.append($link);
     $tr.append($tdResponses);
     $tr.attr("class", "topic-list-item");
-    
+
     $link.append($tdTopic);
     $topicList.append($tr);
 }
