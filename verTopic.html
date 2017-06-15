@@ -5,6 +5,8 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
   </head>
   <body>
 
@@ -16,8 +18,19 @@
         
     </section>
 
+    <button id="addResponse" class="btn">Agregar Otra Respuesta</button>
     
-    
+    <form id="response-form" action="" class="container hide-form">
+        <div class="row">
+            <label for="">Por:</label>
+            <input type="text" id="authorResponse" placeholder="Tu nombre">
+        </div>
+        <div class="row">
+            <label for="">Respuesta:</label>
+            <input type="text" id="contentResponse" placeholder="Tu repsuesta">
+        </div>
+        <button id="addAResponse"class="btn" type="submit">Agregar</button>
+    </form>
  
     
      <!-- jQuery -->
