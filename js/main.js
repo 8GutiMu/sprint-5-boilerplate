@@ -1,24 +1,31 @@
 var api = {
     url: 'http://examen-laboratoria-sprint-5.herokuapp.com/topics'
 };
-
 var $topicList = $("#topic-list");
 
-var filterTopics = function (e) {
-    e.preventDefault();
-    var criterioBusqueda = $("#inputFilter").val().toLowerCase();
-    var topicsArray =[];
+var topicsArray =[];
     
-    $.getJSON(api.url, function (topics) {
+$.getJSON(api.url, function (topics) {
         topics.forEach(function(topic){
             topicsArray.push(topic)
         })
-    });
+});
+
+var filterTopics = function (e) {
+    e.preventDefault();
+    var searchTopic = $("#inputFilter").val().toLowerCase();
     
     
+   
+    var topicsFilterNew = topicsArray.filter(function (topic){
+        var brandNew = topic.content.toLowerCase().indexOf(searchTopic) >= 0;
+        return brandNew;
+    })
     
-    
+    renderTopic(topicsFilterNew);
+
 };
+
 var showForm = function () {
     $("#topic-form").attr("class", "show-form");
 };
@@ -34,12 +41,7 @@ var renderTopic = function (topic) {
     var content = topic.content;
     var responseConunt = topic.responses_count;
     var id = topic.id;
-    console.log(id)
-
-    //  <tdTopic>Topic <spanAuthor>-por: Bren</span></td>
-    //    <tdResponses>Respuestas: <spanCount>0</span></td>
-
-
+    
     var $tr = $("<tr />");
     var $tdTopic = $("<td />")
     var $tdResponses = $("<td />")
