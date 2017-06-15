@@ -2,26 +2,26 @@ var api = {
     url: 'http://examen-laboratoria-sprint-5.herokuapp.com/topics'
 };
 var $topicList = $("#topic-list");
+var topicsArray = [];
 
-var topicsArray =[];
-    
-$.getJSON(api.url, function (topics) {
-        topics.forEach(function(topic){
-            topicsArray.push(topic)
-        })
-});
+($.getJSON(api.url, function (topics) {
+    topics.forEach(function (topic) {
+        topicsArray.push(topic)
+    })
+}))
 
 var filterTopics = function (e) {
     e.preventDefault();
     var searchTopic = $("#inputFilter").val().toLowerCase();
-    
-    
-   
-    var topicsFilterNew = topicsArray.filter(function (topic){
+
+
+
+    var topicsFilterNew = topicsArray.filter(function (topic) {
         var brandNew = topic.content.toLowerCase().indexOf(searchTopic) >= 0;
         return brandNew;
     })
-    
+
+    console.log(topicsFilterNew)
     renderTopic(topicsFilterNew);
 
 };
@@ -41,26 +41,31 @@ var renderTopic = function (topic) {
     var content = topic.content;
     var responseConunt = topic.responses_count;
     var id = topic.id;
-    
-    var $tr = $("<tr />");
-    var $tdTopic = $("<td />")
-    var $tdResponses = $("<td />")
-    var $spanAuthor = $("<span />")
-    var $spanCount = $("<span />")
 
+    var $tr = $("<tr />");
+    var $tdTopic = $("<td />");
+    var $tdResponses = $("<td />");
+    var $spanAuthor = $("<span />");
+    var $spanCount = $("<span />");
+    var $link = $("<a />");
+    
     $tdTopic.text(content);
     $tdResponses.text("Respuestas: ")
     $spanAuthor.text(" -por: " + author_name);
     $spanCount.text(responseConunt);
 
     $tr.attr("id", id);
+    $link.attr("href", "verTopic.html?topic_id="+id);
 
     $tdTopic.append($spanAuthor);
     $tdResponses.append($spanCount);
+    
 
-    $tr.append($tdTopic);
+    $tr.append($link);
     $tr.append($tdResponses);
-
+    $tr.attr("class", "topic-list-item");
+    
+    $link.append($tdTopic);
     $topicList.append($tr);
 }
 
@@ -84,11 +89,13 @@ var addTopic = function (event) {
 
 };
 
+
 var cargarPagina = function () {
     cargarTopics();
     $("#topics-form").submit(addTopic);
     $("#createBtn").click(showForm);
     $("#inputFilter").keyup(filterTopics);
+    $(document).on("click", ".topic-list-item", showThisTopic);
 };
 
 $(document).ready(cargarPagina);
