@@ -7,16 +7,17 @@ var $topicList = $("#topic-list");
 var filterTopics = function (e) {
     e.preventDefault();
     var criterioBusqueda = $("#inputFilter").val().toLowerCase();
-
-//    $.getJSON(api.url, function (topics) {
-//         topics.filter(function (topic) {
-//            var nuevos = topic.nombre.toLowerCase().indexOf(criterioBusqueda) >= 0;
-//            return nuevos;
-//        });
-//    });
-
-   
-    console.log(scontactosFiltrados);
+    var topicsArray =[];
+    
+    $.getJSON(api.url, function (topics) {
+        topics.forEach(function(topic){
+            topicsArray.push(topic)
+        })
+    });
+    
+    
+    
+    
 };
 var showForm = function () {
     $("#topic-form").attr("class", "show-form");
@@ -85,7 +86,7 @@ var cargarPagina = function () {
     cargarTopics();
     $("#topics-form").submit(addTopic);
     $("#createBtn").click(showForm);
-    $("#inputFilter").submit(filterTopics);
+    $("#inputFilter").keyup(filterTopics);
 };
 
 $(document).ready(cargarPagina);
