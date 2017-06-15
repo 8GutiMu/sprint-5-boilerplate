@@ -98,15 +98,15 @@ var addTopic = function (event) {
 
 var deleteTopic= function(){
     var $nodopadre = $(this).parents("tr");
-    var id= $(this).parents("tr").attr("id")
-    console.log("est",id)
+    var id= $nodopadre.attr("id")
+    console.log("est",id,$nodopadre)
     
     $.ajax({
         url: api.url+id,
         type: 'DELETE',
         success: console.log("eliminado"),
         error: function(error){
-            console.log("error",error)
+            console.log("NO ME DEJAN BORRAR >:(",error)
         }
     });
     
