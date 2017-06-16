@@ -45,14 +45,14 @@ var renderTopic = function (topic) {
     var $tr = $("<tr />");
     var $tdTopic = $("<td />");
     var $tdResponses = $("<td />");
-    var $spanAuthor = $("<span />");
+    var $spanAuthor = $("<span class='babySizeFont'></span>");
     var $spanCount = $("<span />");
     var $link = $("<a />");
-    var $close = $('<span class="delete"> BORRAR </span>')
+    var $close = $('<span class="delete"> <i class="fa fa-trash-o" aria-hidden="true"></i> </span>')
 
 
     $tr.attr("id", id)
-    $tdTopic.text(content);
+    $link.text(content);
     $tdResponses.text("Respuestas: ")
     $spanAuthor.text(" -por: " + author_name);
     $spanCount.text(responseConunt);
@@ -60,16 +60,21 @@ var renderTopic = function (topic) {
     $tr.attr("id", id);
     $link.attr("href", "verTopic.html?topic_id=" + id);
 
-    $spanCount.append($close)
-    $tdTopic.append($spanAuthor);
-    $tdResponses.append($spanCount);
-
-
-    $tr.append($link);
-    $tr.append($tdResponses);
     $tr.attr("class", "topic-list-item");
 
-    $link.append($tdTopic);
+    $tdTopic.append($link);
+    $tdTopic.append($spanAuthor);
+    
+    $spanCount.append($close);
+    $tdResponses.append($spanCount);
+   
+    
+    $tr.append($tdTopic);
+    
+    $tr.append($tdResponses);
+    
+    
+    
     $topicList.append($tr);
 }
 
@@ -85,10 +90,10 @@ var addTopic = function (event) {
         content: topicContent,
     }, function (topic) {
         renderTopic(topic);
-        $("#author_name").text("");
-        $("topic_content").empty;
         $("#topic-form").removeAttr("class", "show-form");
         $("#topic-form").attr("class", "hide-form");
+        $("#author_name").val("");
+        $("#topic_content").val("");
     });
 
 };
